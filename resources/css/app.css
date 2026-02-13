@@ -1,0 +1,282 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+/* ----- Global decorative styling (single theme) ----- */
+
+body {
+    min-height: 100vh;
+    font-family: var(--font-sans);
+    background:
+        radial-gradient(circle at top left, rgba(248, 250, 252, 0.07), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(15, 23, 42, 0.95), #020617 70%);
+    color: #e5e7eb;
+}
+
+header {
+    backdrop-filter: blur(16px);
+}
+
+a {
+    transition: color 150ms ease, background-color 150ms ease, border-color 150ms ease;
+}
+
+button,
+input,
+textarea,
+select {
+    transition: background-color 150ms ease, border-color 150ms ease, box-shadow 150ms ease,
+        transform 120ms ease;
+}
+
+button:hover {
+    transform: translateY(-0.5px);
+}
+
+/* Card-like containers */
+.card-surface {
+    border-radius: 1rem;
+    background: rgba(15, 23, 42, 0.94);
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    box-shadow:
+        0 18px 60px rgba(15, 23, 42, 0.9),
+        0 0 0 1px rgba(15, 23, 42, 0.4);
+}
+
+/* Subtle glow for primary CTAs */
+.btn-primary-glow {
+    box-shadow:
+        0 10px 30px rgba(248, 113, 113, 0.45),
+        0 0 0 1px rgba(248, 250, 252, 0.02);
+}
+
+/* Bingo grid refinement (works with existing utility classes) */
+.bingo-grid-cell {
+    position: relative;
+    overflow: hidden;
+    background-image:
+        radial-gradient(circle at 0 0, rgba(148, 163, 184, 0.18), transparent 55%),
+        linear-gradient(135deg, rgba(15, 23, 42, 0.09) 0, transparent 50%);
+    background-size:
+        140% 140%,
+        26px 26px;
+    background-blend-mode: soft-light;
+}
+
+.bingo-grid-cell span {
+    color: #111827;
+}
+
+/* Template cards: category-based gradient halos */
+.template-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.template-card::before {
+    content: '';
+    position: absolute;
+    inset: -40%;
+    opacity: 0.5;
+    mix-blend-mode: screen;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at top left, rgba(251, 191, 36, 0.25), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.22), transparent 60%);
+}
+
+.template-card-icebreaker::before {
+    background:
+        radial-gradient(circle at top left, rgba(45, 212, 191, 0.3), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.25), transparent 60%);
+}
+
+.template-card-educational::before {
+    background:
+        radial-gradient(circle at top left, rgba(56, 189, 248, 0.32), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(34, 197, 94, 0.26), transparent 60%);
+}
+
+.template-card-work::before {
+    background:
+        radial-gradient(circle at top left, rgba(129, 140, 248, 0.34), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(96, 165, 250, 0.26), transparent 60%);
+}
+
+.template-card-party::before {
+    background:
+        radial-gradient(circle at top left, rgba(248, 113, 113, 0.32), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(251, 191, 36, 0.28), transparent 60%);
+}
+
+.template-card-family::before {
+    background:
+        radial-gradient(circle at top left, rgba(244, 114, 182, 0.32), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(52, 211, 153, 0.26), transparent 60%);
+}
+
+.template-card-fitness::before {
+    background:
+        radial-gradient(circle at top left, rgba(52, 211, 153, 0.34), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.24), transparent 60%);
+}
+
+.template-card-event::before {
+    background:
+        radial-gradient(circle at top left, rgba(251, 191, 36, 0.32), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(248, 113, 113, 0.26), transparent 60%);
+}
+
+.template-card-hobby::before {
+    background:
+        radial-gradient(circle at top left, rgba(96, 165, 250, 0.32), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(244, 114, 182, 0.26), transparent 60%);
+}
+
+.template-card-seasonal::before {
+    background:
+        radial-gradient(circle at top left, rgba(248, 250, 252, 0.28), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(248, 113, 113, 0.28), transparent 60%);
+}
+
+/* Full card themes used on preview/show pages */
+.card-theme {
+    border-radius: 0.75rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-theme-default {
+    background:
+        radial-gradient(circle at top left, rgba(248, 250, 252, 0.7), #f9fafb),
+        linear-gradient(135deg, rgba(226, 232, 240, 0.7), rgba(248, 250, 252, 0.9));
+}
+
+.card-theme-icebreaker {
+    background:
+        radial-gradient(circle at top left, rgba(45, 212, 191, 0.4), rgba(15, 23, 42, 0.96)),
+        radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.35), #020617);
+}
+
+.card-theme-educational {
+    background:
+        radial-gradient(circle at top left, rgba(56, 189, 248, 0.38), rgba(15, 23, 42, 0.96)),
+        radial-gradient(circle at bottom right, rgba(34, 197, 94, 0.3), #020617);
+}
+
+.card-theme-work {
+    background:
+        radial-gradient(circle at top left, rgba(129, 140, 248, 0.4), rgba(15, 23, 42, 0.96)),
+        radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.3), #020617);
+}
+
+.card-theme-party {
+    background:
+        radial-gradient(circle at top left, rgba(248, 113, 113, 0.4), rgba(15, 23, 42, 0.96)),
+        radial-gradient(circle at bottom right, rgba(251, 191, 36, 0.3), #020617);
+}
+
+.card-theme-family {
+    background:
+        radial-gradient(circle at top left, rgba(244, 114, 182, 0.4), rgba(15, 23, 42, 0.96)),
+        radial-gradient(circle at bottom right, rgba(52, 211, 153, 0.3), #020617);
+}
+
+.card-theme-fitness {
+    background:
+        radial-gradient(circle at top left, rgba(52, 211, 153, 0.42), rgba(15, 23, 42, 0.96)),
+        radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.3), #020617);
+}
+
+.card-theme-event {
+    background:
+        radial-gradient(circle at top left, rgba(251, 191, 36, 0.4), rgba(15, 23, 42, 0.96)),
+        radial-gradient(circle at bottom right, rgba(248, 113, 113, 0.3), #020617);
+}
+
+.card-theme-hobby {
+    background:
+        radial-gradient(circle at top left, rgba(96, 165, 250, 0.4), rgba(15, 23, 42, 0.96)),
+        radial-gradient(circle at bottom right, rgba(244, 114, 182, 0.3), #020617);
+}
+
+.card-theme-seasonal {
+    background:
+        radial-gradient(circle at top left, rgba(248, 250, 252, 0.8), rgba(15, 23, 42, 0.96)),
+        radial-gradient(circle at bottom right, rgba(248, 113, 113, 0.35), #020617);
+}
+
+.card-theme-icebreaker .bingo-grid-cell {
+    border-color: rgba(45, 212, 191, 0.45);
+}
+
+.card-theme-educational .bingo-grid-cell {
+    border-color: rgba(56, 189, 248, 0.5);
+}
+
+.card-theme-work .bingo-grid-cell {
+    border-color: rgba(129, 140, 248, 0.5);
+}
+
+.card-theme-party .bingo-grid-cell {
+    border-color: rgba(248, 113, 113, 0.55);
+}
+
+.card-theme-family .bingo-grid-cell {
+    border-color: rgba(244, 114, 182, 0.5);
+}
+
+.card-theme-fitness .bingo-grid-cell {
+    border-color: rgba(52, 211, 153, 0.55);
+}
+
+.card-theme-event .bingo-grid-cell {
+    border-color: rgba(251, 191, 36, 0.55);
+}
+
+.card-theme-hobby .bingo-grid-cell {
+    border-color: rgba(96, 165, 250, 0.5);
+}
+
+.card-theme-seasonal .bingo-grid-cell {
+    border-color: rgba(248, 113, 113, 0.55);
+}
+
+.card-theme-icebreaker .bingo-grid-cell span,
+.card-theme-educational .bingo-grid-cell span,
+.card-theme-work .bingo-grid-cell span,
+.card-theme-party .bingo-grid-cell span,
+.card-theme-family .bingo-grid-cell span,
+.card-theme-fitness .bingo-grid-cell span,
+.card-theme-event .bingo-grid-cell span,
+.card-theme-hobby .bingo-grid-cell span,
+.card-theme-seasonal .bingo-grid-cell span {
+    color: #f9fafb;
+}
+
+.bingo-grid-cell::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top, rgba(248, 250, 252, 0.04), transparent 60%);
+    opacity: 0;
+    transition: opacity 150ms ease;
+    pointer-events: none;
+}
+
+.bingo-grid-cell:hover::after {
+    opacity: 1;
+}
+
+/* Smooth anchor scrolling for in-page navigation */
+html {
+    scroll-behavior: smooth;
+}
